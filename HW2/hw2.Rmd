@@ -7,10 +7,39 @@ output: html_document
 library(tidyverse)
 library(lme4)
 library(vcd)
+library(ggplot2)
 ```
 
 ## Задание 1
 
+### 1.0
+
+``` {r}
+shva <- read.csv('https://raw.githubusercontent.com/agricolamz/2018-MAG_R_course/master/data/duryagin_ReductionRussian.txt', sep='\t')
+```
+
+### 1.1
+
+``` {r}
+ggplot(data=shva, aes(f2, f1)) + geom_point(aes(colour=factor(shva$vowel)), show.legend = F) + scale_y_reverse() + scale_x_reverse() + labs(title='f2 and f1 of the reduced and stressed vowels', caption="Data from Duryagin 2018")
+```
+
+### 1.2 Plot the boxplots of f1 and f2 for each vowel using ggplot().
+
+``` {r}
+ggplot(data=shva, aes(vowel, f1)) + geom_boxplot(aes(fill=factor(shva$vowel)), show.legend = F) + coord_flip() + labs(title='f1 distribution for each vowel', caption="Data from Duryagin 2018")
+ggplot(data=shva, aes(vowel, f2)) + geom_boxplot(aes(fill=factor(shva$vowel)), show.legend = F) + coord_flip() + labs(title='f2 distribution for each vowel', caption="Data from Duryagin 2018")
+```
+
+### 1.3 Which f1 can be considered outliers in a vowel?
+
+3 точки из y, одна точка из A, три точки из а
+
+### 1.4 Calculate Pearson’s correlation of f1 and f2 (all data)
+
+``` {r}
+cor(shva$f1, shva$f2, method='pearson')
+```
 
 ## Задание 3
 
@@ -31,11 +60,15 @@ chisq.test(table)
 ``` {r}
 chisq.test(table)$expected
 ```
-Понятно почему: в оюной из клеток значение 3.74. Если попробовать то же самое с остальными -- всё хорошо. Следовательно, ответ -- `Aux` ~ `CeSynt`.
+
+
+Понятно почему: в одной из клеток значение 3.74. Если попробовать то же самое с остальными -- всё хорошо. Следовательно, ответ -- `Aux` ~ `CeSynt`.
 
 ``` {r}
 fisher.test(table)
 ```
+
+
 p-value < 2.2e-16. Следовательно, значима.
 
 ### 3.2 Test the hypothesis that Aux and EPTrans are not independent with the help of Pearson’s Chi-squared Test.
@@ -58,13 +91,22 @@ fisher.test(table)$estimate
 odds ratio = 2.601174
 
 ### 3.5 Calculate effect size for this test using Cramer’s V (phi).
+``` {r}
 library(questionr)
 cramer.v(table)
+```
 
-### 3.6 Report the results of independence/
+### 3.6 Report the results of independence
+
+We have found a significant association between variables `Aux` and `EPTrans` (p < 0.001). Effect size is small (Cramer's V = 0.1744882).
 
 
 ### 3.7 Visualize the distribution using mosaic plot.
+``` {r}
 library(vcd)
 mosaic(~ Aux + CrSem + Country, data=data, shade=TRUE, legend=TRUE)
+```
 
+### 3.8
+
+https://xkcd.com/882/
