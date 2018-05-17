@@ -1,0 +1,70 @@
+---
+title: "HW 2: From correlation to linear mixed-effect models. Assignment sheet"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(lme4)
+library(vcd)
+```
+
+## Задание 1
+
+
+## Задание 3
+
+### 3.0
+
+``` {r}
+data <- read.csv('https://raw.githubusercontent.com/agricolamz/2018-MAG_R_course/master/data/dutch_causatives.csv', sep = ',')
+```
+
+### 3.1
+Критерий χ2 плохо использовать, если хотя бы в одной из клеток ожидаемое значение меньше 5
+``` {r}
+table <- table(data$Aux, data$CeSynt) 
+chisq.test(table)
+```
+получаем Warning: In chisq.test(table) : Chi-squared approximation may be incorrect
+
+``` {r}
+chisq.test(table)$expected
+```
+Понятно почему: в оюной из клеток значение 3.74. Если попробовать то же самое с остальными -- всё хорошо. Следовательно, ответ -- `Aux` ~ `CeSynt`.
+
+``` {r}
+fisher.test(table)
+```
+p-value < 2.2e-16. Следовательно, значима.
+
+### 3.2 Test the hypothesis that Aux and EPTrans are not independent with the help of Pearson’s Chi-squared Test.
+
+``` {r}
+table <- table(data$Aux, data$EPTrans) 
+chisq.test(table)
+```
+p-value = 0.0001553 -> yes, they are dependent.
+
+### 3.3 Provide expected values for Pearson’s Chi-squared Test of Aux and EPTrans variables.
+``` {r}
+chisq.test(table)$expected
+```
+
+### 3.4 Calculate the odds ratio
+``` {r}
+fisher.test(table)$estimate
+```
+odds ratio = 2.601174
+
+### 3.5 Calculate effect size for this test using Cramer’s V (phi).
+library(questionr)
+cramer.v(table)
+
+### 3.6 Report the results of independence/
+
+
+### 3.7 Visualize the distribution using mosaic plot.
+library(vcd)
+mosaic(~ Aux + CrSem + Country, data=data, shade=TRUE, legend=TRUE)
+
