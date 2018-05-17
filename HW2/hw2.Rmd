@@ -41,6 +41,86 @@ ggplot(data=shva, aes(vowel, f2)) + geom_boxplot(aes(fill=factor(shva$vowel)), s
 cor(shva$f1, shva$f2, method='pearson')
 ```
 
+### 1.5 Calculate Pearson’s correlation of f1 and f2 for each vowel 
+
+``` {r}
+a <- shva[shva$vowel=='a',] 
+y <- shva[shva$vowel=='y',]
+A <- shva[shva$vowel=='A',]
+print(cor(a$f1, a$f2))
+print(cor(y$f1, y$f2))
+print(cor(A$f1, A$f2))
+```
+## 1.6 Use the linear regression model to predict f2 by f1.
+
+``` {r}
+m <- lm(f2~f1, data=shva)
+```
+#### 1.6.1 Provide the result regression formula
+
+``` {r}
+coefficients(m)
+```
+> 1639.7021488 - 0.4287498 f1
+
+#### 1.6.2 Provide the adjusted R2
+``` {r}
+summary(m)
+```
+
+> R-squared:  0.3361
+
+#### 1.6.3 Add the regression line in scatterplot 1.1
+
+``` {r}
+for_the_picture <- lm(f1~f2, data=shva)
+ggplot(data=shva, aes(f2, f1)) + 
+  geom_point(aes(colour=factor(shva$vowel)), show.legend = F) +
+  geom_line(aes(f2, predict(for_the_picture))) +
+  scale_y_reverse() + 
+  scale_x_reverse() + 
+  labs(title='f2 and f1 of the reduced and stressed vowels', caption="Data from Duryagin 2018")
+```
+
+### 1.7 Use the mixed-efects model to predict f2 by f1 using vowel intercept as a random effect
+
+``` {r}
+m2 <- lmer(f2~f1+(1|vowel), data=shva)
+```
+
+#### 1.7.1 Provide the fixed effects formula
+
+``` {r}
+fixef(m2)
+```
+
+#### 1.7.2 Provide the variance for intercept argument for vowel random effects
+
+``` {r}
+summary(m2)
+```
+
+Variance:
+> 6374
+
+## Задание 2
+
+### 2.0 Read the data from file to the variable elp.
+
+``` {r}
+elp <- read.csv('https://raw.githubusercontent.com/agricolamz/2018-MAG_R_course/master/data/ELP.csv')
+```
+
+### 2.1 Which two variables have the highest Pearson’s correlaton value.
+
+``` {r}
+cor(elp$SUBTLWF, elp$Length, method='pearson')
+cor(elp$Mean_RT, elp$SUBTLWF, method='pearson')
+cor(elp$Mean_RT, elp$Length, method='pearson')
+```
+
+Ответ: `Mean_RT` ~ `Length`.
+
 ## Задание 3
 
 ### 3.0
@@ -62,7 +142,7 @@ chisq.test(table)$expected
 ```
 
 
-Понятно почему: в одной из клеток значение 3.74. Если попробовать то же самое с остальными -- всё хорошо. Следовательно, ответ -- `Aux` ~ `CeSynt`.
+Понятно почему: в оюной из клеток значение 3.74. Если попробовать то же самое с остальными -- всё хорошо. Следовательно, ответ -- `Aux` ~ `CeSynt`.
 
 ``` {r}
 fisher.test(table)
