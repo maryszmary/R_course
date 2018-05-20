@@ -8,11 +8,23 @@ x <- udpipe_annotate(udmodel, x = txt)
 x <- as.data.frame(x)
 str(x)
 
-
-## loading the data
-
-
-## writing the data
-
 setwd('~/Documents/R_course/project/')
 write.table(x, "trial.csv", sep = '\t')
+
+
+## getting the data
+
+read_parse_write <- function(rpath, wpath, udmodel) {
+  # loading the data
+  txt <- readLines(rpath)
+  txt <- paste0(txt, collapse = " ")
+  
+  # parsing
+  x <-udpipe_annotate(udmodel, x = txt)
+  x <- as.data.frame(x)
+  
+  # writing the data
+  write.table(x, wpath, sep = '\t')
+}
+
+read_parse_write("txt/onegin.txt", "data/poetry/pushkin_ong.csv", udmodel)
