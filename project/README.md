@@ -5,10 +5,13 @@
 * fiction:
 	* Pushkin
 	* Lermontov
+	* Pasternak
 * poetry:
 	* Pushkin
 	* Lermontov
-* news
+	* Pasternak
+* news:
+	* wikinews dump 
 
 ## Literature
 
