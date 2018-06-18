@@ -4,7 +4,6 @@ library(udpipe)
 udmodel <- udpipe_download_model(language = "russian")
 udmodel <- udpipe_load_model(file = udmodel$file_model)
 txt = c("Это мой тестовый текст. Посмотрм, как ты справишься с ним", "Как тебе такое, Элон Маск?")
-names(txt) = c('a', 'b')
 x <- udpipe_annotate(udmodel, x = txt)
 x <- as.data.frame(x)
 str(x)
@@ -21,15 +20,21 @@ read_parse_write <- function(rpath, wpath, udmodel) {
   # loading the data
   txt <- readLines(rpath)
   txt <- paste0(txt, collapse = " ")
-  
+
   # parsing
   x <-udpipe_annotate(udmodel, x = txt)
   x <- as.data.frame(x)
-  
+
   # writing the data
-  write.table(x, wpath, sep = '\t')
+  write.csv(x, wpath)
 }
 
-# read_parse_write("txt/onegin.txt", "data/poetry/pushkin_ong.csv", udmodel)
+read_parse_write("txt/past_poetry.txt", "data/poetry/past_poetry.txt", udmodel)
 
-pushkin_fiction
+# pushkin_poetry <- readLines("txt/onegin.txt")
+# pushkin_poetry <- paste0(pushkin_poetry, collapse = " ")
+# pushkin_fiction <- readLines("txt/Kapitanskaya_dochka.txt") 
+# lerm_fiction <- readLines("txt/lerm_fiction.txt") 
+# lerm_poetry <- readLines("txt/lerm_poetry.txt") 
+# past_fiction <- readLines("txt/past_fiction.txt") 
+# past_poetry <- readLines("txt/past_poetry.txt") 
