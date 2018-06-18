@@ -21,9 +21,9 @@ Genre/author analisys using computational methods is considered to be a part of 
 ### Features
 
 * sentence length?
-  * average word length?
-  * participle clauses?
-  * converb clauses?
+* average word length?
+* participle clauses?
+* converb clauses?
   
   ## Research hypothesis  
   
@@ -45,7 +45,7 @@ library(tidyverse)
 ## Analysis: descriptive statistics
 
 *Корреляция?*
-  *Рафички!*
+  *Графички!*
   
   ## Multi-factor analysis
   
