@@ -1,0 +1,64 @@
+---
+  title: "Comparative research of complexity in Russian genres"
+output: html_document
+---
+  
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Materials
+
+[Link to the dataset](https://github.com/maryszmary/R_course/tree/master/project/data).
+[Data annotation script](https://github.com/maryszmary/R_course/blob/master/project/collect_data.r)
+
+## Introduction
+
+### Research idea
+
+Genre/author analisys using computational methods is considered to be a part of Digital Humanities. In our research, we investigate ...
+
+### Features
+
+* sentence length?
+  * average word length?
+  * participle clauses?
+  * converb clauses?
+  
+  ## Research hypothesis  
+  
+  We suppose that features assosiated with text complexity 
+
+## Data
+
+The data for our research come from three Russian authors: Alexander Pushkin, Michael Lermontov and Borisr Pasternak. For each aughtor, we take prosaic and poetry text.
+
+The data were downloaded from internet in plain text, and then syntactically parsed using the `udpipe` library (R binding for UDPipe).
+
+## R libraries in use
+```{r libraries}
+library(tidyverse)
+# include R libraries here or later
+```
+
+
+## Analysis: descriptive statistics
+
+*Корреляция?*
+  *Рафички!*
+  
+  ## Multi-factor analysis
+  
+  Хмм...
+
+At least two different methods have to be used. Please provide the output models summaries and graphs. Please evaluate your models (show and interpret relevant indicators such as classification accuracy, goodness of fit, classification power, inertia, variable significance, variable importance, etc.).   
+It is recommended to report, when needed, how did you fit the model, did you find any signs of overfitting, why do you believe that certain model is an optimal one, etc.
+
+## Linguistic interpretation of the quantitative results  
+
+Ну типа какие выводы получились.
+
+## Discussion on data distribution and quantitative methods in use   
+
+In conclusion, you can suggest ideas for further development of your research (correction of hypotheses, work with the data, their statistical analysis).
+
