@@ -10,8 +10,6 @@
 	* Pushkin
 	* Lermontov
 	* Pasternak
-* news:
-	* wikinews dump 
 
 ## Literature
 
