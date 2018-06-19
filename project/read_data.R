@@ -3,6 +3,9 @@ library(tidyverse)
 lerm_fiction <- read_csv("/home/melanoya/Documents/maga/R_course/project/data/fiction/lerm_fiction.csv")
 lerm_fiction <- lerm_fiction[, -1]
 
+word_len <- nchar(lerm_fiction$token)
+lerm_fiction <- cbind(lerm_fiction, word_len)
+
 lerm_fiction %>% 
   group_by(sentence) %>% 
   mutate(n_tokens = n()) %>% 
@@ -17,6 +20,9 @@ lerm_fiction %>%
 past_fiction <- read_csv("/home/melanoya/Documents/maga/R_course/project/data/fiction/past_fiction.csv")
 past_fiction <- past_fiction[, -1]
 
+word_len <- nchar(past_fiction$token)
+past_fiction <- cbind(past_fiction, word_len)
+
 past_fiction %>% 
   group_by(sentence) %>% 
   mutate(n_tokens = n()) %>% 
@@ -29,6 +35,9 @@ past_fiction %>%
 
 pushkin_kap <- read_csv("/home/melanoya/Documents/maga/R_course/project/data/fiction/pushkin_kap.csv")
 pushkin_kap <- pushkin_kap[, -1]
+
+word_len <- nchar(pushkin_kap$token)
+pushkin_kap <- cbind(pushkin_kap, word_len)
 
 pushkin_kap %>% 
   group_by(sentence) %>% 
@@ -72,11 +81,12 @@ pushkin_ong <- pushkin_ong[, -1]
 
 pushkin_ong  %>% 
   group_by(sentence) %>% 
-  mutate(n_tokens = n()) %>% 
-  mutate(n_words = n()) %>%
+  mutate(n_words = n()) %>% 
+  len = length(pushkin_ong$token) %>%
+  mutate(len = length(pushkin_ong$token))
   mutate(avtor = "pushkin") %>%
   mutate(genre = "poetry") %>%
-  select(n_words, avtor, genre, sentence) %>% 
+  select(n_words, len, avtor, genre, sentence) %>% 
   distinct() ->
   pushkin_ong_new
 
