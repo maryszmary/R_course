@@ -29,7 +29,7 @@ read_parse_write <- function(rpath, wpath, udmodel) {
   write.csv(x, wpath)
 }
 
-read_parse_write("txt/past_poetry.txt", "data/poetry/past_poetry.txt", udmodel)
+read_parse_write("txt/Kapitanskaya_dochka.txt", "data/fiction/pushkin_kap.csv", udmodel)
 
 # pushkin_poetry <- readLines("txt/onegin.txt")
 # pushkin_poetry <- paste0(pushkin_poetry, collapse = " ")
