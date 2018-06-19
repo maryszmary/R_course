@@ -1,33 +1,35 @@
 ---
-  title: "Comparative research of complexity in Russian genres"
+title: "Comparative research of text complexity in Russian genres"
 output: html_document
 ---
-  
-  ```{r setup, include=FALSE}
+
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### Materials
 
-[Link to the dataset](https://github.com/maryszmary/R_course/tree/master/project/data).
+[Link to the dataset](https://github.com/maryszmary/R_course/blob/master/project/total.csv).
 [Data annotation script](https://github.com/maryszmary/R_course/blob/master/project/collect_data.r)
 
 ## Introduction
 
 ### Research idea
 
-Genre/author analisys using computational methods is considered to be a part of Digital Humanities. In our research, we investigate ...
+Genre/author analisys using computational methods is considered to be a part of Digital Humanities. In our research, we investigate how features assosiated with text complex vary by literature genres (fiction and poetry) and by authors.
 
 ### Features
 
-* sentence length?
-* average word length?
-* participle clauses?
-* converb clauses?
-  
-  ## Research hypothesis  
-  
-  We suppose that features assosiated with text complexity 
+* sentence length
+* average word length
+
+## Research hypothesis  
+
+We suppose that:
+
+* fiction texts show more complexity than poetry (null hypothesis: there's no significant difference)
+* in terms of text complexity, there is more difference between text genres than between different authors (null hypothesis: vice versa or no significant difference)
+
 
 ## Data
 
@@ -35,30 +37,37 @@ The data for our research come from three Russian authors: Alexander Pushkin, Mi
 
 The data were downloaded from internet in plain text, and then syntactically parsed using the `udpipe` library (R binding for UDPipe).
 
+
 ## R libraries in use
 ```{r libraries}
 library(tidyverse)
-# include R libraries here or later
+library(ggplot2)
 ```
-
 
 ## Analysis: descriptive statistics
 
-*Корреляция?*
-  *Графички!*
-  
-  ## Multi-factor analysis
-  
-  Хмм...
+We looked at the distribution of average sentence:
 
-At least two different methods have to be used. Please provide the output models summaries and graphs. Please evaluate your models (show and interpret relevant indicators such as classification accuracy, goodness of fit, classification power, inertia, variable significance, variable importance, etc.).   
-It is recommended to report, when needed, how did you fit the model, did you find any signs of overfitting, why do you believe that certain model is an optimal one, etc.
+
+![Distribution by author](Rplot_avtor.png)
+
+![Distribution by genre](Rplot_genres.png)
+
+```{r tables}
+df_general <-  read.csv('df_general.csv')
+knitr::kable(df_general,format="html")
+```
 
 ## Linguistic interpretation of the quantitative results  
 
-Ну типа какие выводы получились.
+It's not correct to make any conclusions now, but given the data on the average sentence langth (in tokens) we can say that:
 
-## Discussion on data distribution and quantitative methods in use   
+* there is more difference between authors than between genres
+* Pasternak's text have consistant length
 
-In conclusion, you can suggest ideas for further development of your research (correction of hypotheses, work with the data, their statistical analysis).
+## Future work
 
+Further development of our research might include:
+
+* extracting more features, especially assosiated with syntax
+* using clustering for determining if complexity varies between genres greater than between authors or vice versa
