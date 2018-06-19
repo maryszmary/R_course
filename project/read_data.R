@@ -7,9 +7,12 @@ length(lerm_fiction$sentence)
 data.frame(names=lerm_fiction$sentence,chr=apply(temp,2,nchar)[,2])
 
 lerm_fiction %>% 
-  group_by(sentence_id) %>% 
-  mutate(n_words = n()) %>% 
-  select(n_words, sentence, sentence_id) %>% 
+  group_by(sentence) %>% 
+  mutate(n_tokens = n()) %>% 
+  mutate(n_words = n()) %>%
+  mutate(avtor = "lerm") %>%
+  mutate(genre = "fiction") %>%
+  select(n_words, avtor, genre, sentence) %>% 
   distinct() ->
   lerm_fiction_new
 
