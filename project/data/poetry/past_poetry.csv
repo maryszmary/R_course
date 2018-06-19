@@ -1,4 +1,4 @@
-"","doc_id","paragraph_id","sentence_id","sentence","token_id","token","lemma","upos","xpos","feats","head_token_id","dep_rel","deps","misc"
+"id","doc_id","paragraph_id","sentence_id","sentence","token_id","token","lemma","upos","xpos","feats","head_token_id","dep_rel","deps","misc"
 "1","doc1",1,1,"Борис Пастернак - Лейтенант Шмидт Часть первая 1 Поля и даль распластывались эллипсом.","1","Борис","БОРИС","PROPN","NNP","Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing","5","nsubj",NA,"SpacesBefore=\s\s\s"
 "2","doc1",1,1,"Борис Пастернак - Лейтенант Шмидт Часть первая 1 Поля и даль распластывались эллипсом.","2","Пастернак","Пастернак","PROPN","NNP","Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing","1","flat",NA,NA
 "3","doc1",1,1,"Борис Пастернак - Лейтенант Шмидт Часть первая 1 Поля и даль распластывались эллипсом.","3","-","-","PUNCT","-",NA,"2","goeswith",NA,NA

@@ -1,4 +1,4 @@
-"","doc_id","paragraph_id","sentence_id","sentence","token_id","token","lemma","upos","xpos","feats","head_token_id","dep_rel","deps","misc"
+"id","doc_id","paragraph_id","sentence_id","sentence","token_id","token","lemma","upos","xpos","feats","head_token_id","dep_rel","deps","misc"
 "1","doc1",1,1,"Немного лет тому назад, Там, где, сливаяся, шумят, Обнявшись, будто две сестры, Струи Арагвы и Куры, Был монастырь.","1","Немного","НЕМНОГО","ADV","RB",NA,"2","advmod",NA,"SpacesBefore=\s\s\s\s\s"
 "2","doc1",1,1,"Немного лет тому назад, Там, где, сливаяся, шумят, Обнявшись, будто две сестры, Струи Арагвы и Куры, Был монастырь.","2","лет","ГОД","VERB","VBC","Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin","0","root",NA,NA
 "3","doc1",1,1,"Немного лет тому назад, Там, где, сливаяся, шумят, Обнявшись, будто две сестры, Струи Арагвы и Куры, Был монастырь.","3","тому","ТОТ","PRON","DT","Animacy=Inan|Case=Dat|Gender=Neut|Number=Sing","2","iobj",NA,NA
