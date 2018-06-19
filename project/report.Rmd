@@ -58,6 +58,8 @@ df_general <-  read.csv('df_general.csv')
 knitr::kable(df_general,format="html")
 ```
 
+![length table](table_general.png)
+
 ## Linguistic interpretation of the quantitative results  
 
 It's not correct to make any conclusions now, but given the data on the average sentence langth (in tokens) we can say that:
