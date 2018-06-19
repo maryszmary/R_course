@@ -2,6 +2,24 @@ library(tidyverse)
 
 lerm_fiction <- read_csv("/home/melanoya/Documents/maga/R_course/project/data/fiction/lerm_fiction.csv")
 lerm_fiction <- lerm_fiction[, -1]
+
+length(lerm_fiction$sentence)
+data.frame(names=lerm_fiction$sentence,chr=apply(temp,2,nchar)[,2])
+
+lerm_fiction %>% 
+  group_by(sentence_id) %>% 
+  mutate(n_words = n()) %>% 
+  select(n_words, sentence, sentence_id) %>% 
+  distinct() ->
+  lerm_fiction_new
+
+
+
+
+
+
+
+
 past_fiction <- read_csv("/home/melanoya/Documents/maga/R_course/project/data/fiction/past_fiction.csv")
 past_fiction <- past_fiction[, -1]
 
