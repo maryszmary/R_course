@@ -121,6 +121,83 @@ cor(elp$Mean_RT, elp$Length, method='pearson')
 
 Ответ: `Mean_RT` ~ `Length`.
 
+
+
+### 2.2 Group your data by parts of speech and make a scatterplot of SUBTLWF and Mean_RT.
+```{r 2.2}
+elp %>%
+  ggplot(aes(SUBTLWF, Mean_RT)) +
+  geom_point(aes(colour = Length)) +
+  scale_color_continuous(low = "lightblue", high = "red") +
+  facet_wrap(~POS, scales = "free_x") +
+  scale_x_log10() +
+  theme_bw() +
+  labs(caption="data from (Balota et al. 2007)")
+```
+
+We've used `scale_color_continuous(low = "lightblue", high = "red")` as a parameter of `ggplot()`.
+
+### 2.3 Use the linear regression model to predict `Mean_RT` by `log(SUBTLWF)` and `POS`.
+m <- lm(Mean_RT ~ log(SUBTLWF) + POS, data=elp)
+coefficients(m)
+
+#### 2.3.1 Provide the result regression formula
+```{r 2.3.1}
+
+```
+
+#### 2.3.2 Provide the adjusted R$^2$
+```{r 2.3.2}
+summary(m)$adj.r.squared
+```
+
+#### 2.3.3 Add the regression line in the scatterplot.
+```{r 2.3.3}
+mod <- lm(Mean_RT~log(SUBTLWF), data=elp)
+model_prediction <- predict(mod)
+
+elp %>%
+  ggplot(aes(log(SUBTLWF), Mean_RT)) +
+  geom_point(aes(colour = Length)) +
+  scale_color_continuous(low = "lightblue", high = "red") +
+  geom_line(aes(log(SUBTLWF), model_prediction), color='black') +
+  theme_bw() +
+  labs(caption="data from (Balota et al. 2007)")
+```
+
+### 2.4 Use the mixed-efects model to predict `Mean_RT` by `log(SUBTLWF)` using POS intercept as a random effect
+
+m <- lmer(Mean_RT~log(SUBTLWF) + (1 | POS), data=elp)
+summary(m)
+
+fixef(m)
+
+#### 2.4.1 Provide the fixed effects formula
+```{r 2.4.1}
+
+```
+
+#### 2.4.2 Provide the variance for intercept argument for `POS` random effects
+```{r 2.4.2}
+414.4
+
+```
+
+#### 2.4.3 Add the regression line to the scatterplot
+```{r 2.4.3}
+m <- lmer(Mean_RT~log(SUBTLWF) + (1 | POS), data=elp)
+elp$model_prediction <- predict(m)
+
+elp %>% 
+  ggplot(aes(log(SUBTLWF), Mean_RT, color=POS)) + 
+  geom_point() + 
+  facet_wrap(~POS) + 
+  geom_line(aes(log(SUBTLWF), model_prediction), color='black') + 
+  labs(caption='data from (Balota et al. 2007)') + 
+  theme(legend.position='none')
+
+```
+
 ## Задание 3
 
 ### 3.0
